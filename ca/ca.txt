@@ -1,0 +1,83 @@
+#include <iostream>
+using namespace std;
+
+class Patient
+{
+public:
+    int p_id;
+    string name;
+    int age;
+    string disease;
+    double bill_amt;
+
+    void disp_seniorCitizen()
+    {
+        if (age > 60)
+            cout << "\nPatient is a Senior Citizen\n";
+
+        cout << "Patient ID: " << p_id << endl;
+        cout << "Patient Name: " << name << endl;
+        cout << "Patient Age: " << age << endl;
+        cout << "Patient Disease: " << disease << endl;
+        cout << "Patient Bill Amount: " << bill_amt << endl;
+    }
+
+    double discount(double amt)
+    {
+        double disc = 0;
+
+        if(amt >= 1000 && amt <= 50000)
+        {
+            cout<<"You get 10% discount"<<endl;
+            disc = amt * 0.10;
+        }
+        else if(amt > 50000 && amt <= 100000)
+        {
+            cout<<"You get 20% discount"<<endl;
+            disc = amt * 0.20;
+        }
+        else
+        {
+            cout<<"You get 25% discount"<<endl;
+            disc = amt * 0.25;
+        }
+
+        return disc;
+    }
+};
+
+int main()
+{
+    Patient p[5];
+
+    for(int i = 0; i < 5; i++)
+    {
+        cout<<"\nEnter Patient ID: ";
+        cin>>p[i].p_id;
+
+        cout<<"Enter Name: ";
+        cin>>p[i].name;
+
+        cout<<"Enter Age: ";
+        cin>>p[i].age;
+
+        cout<<"Enter Disease: ";
+        cin>>p[i].disease;
+
+        cout<<"Enter Bill Amount: ";
+        cin>>p[i].bill_amt;
+    }
+
+    for(int i = 0; i < 5; i++)
+    {
+
+        p[i].disp_seniorCitizen();
+
+        double disc = p[i].discount(p[i].bill_amt);
+        double finalAmt = p[i].bill_amt - disc;
+
+        cout << "Final Bill After Discount: " << finalAmt << endl;
+    }
+
+    return 0;
+}
